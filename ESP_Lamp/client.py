@@ -3,17 +3,15 @@ import numpy as np
 import paho.mqtt.client as paho
 
 def ligth(a: int, b: int):
-    client.publish(topic, 0)
+    client.publish(topic, 1)
     print("off")
     time.sleep(20+a)
-    client.publish(topic, 1)
+    client.publish(topic, 0)
     print("on")
     time.sleep(20-b-a)
-    client.publish(topic, 0)
+    client.publish(topic, 1)
     print("off")
     time.sleep(20+b)
-
-
 
 broker = "broker.emqx.io"
 client = paho.Client("your_name")
@@ -23,7 +21,7 @@ topic = "Now_I_decide_the_name_myself/command"
 
 timings = np.array((0, 0))
 while True:
-    if timings.sum() == 10:
+    if timings.sum() == 11:
         timings = np.array((0, 0))
 
     if timings.sum()%2==0:
