@@ -10,7 +10,7 @@ client.connect(broker)
 client.loop_start()
 print("Publishing")
 
-for i in range(100):
+for i in range(100000):
     if i%2==1:
         state ="d 7"
     else:

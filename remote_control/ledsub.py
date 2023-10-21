@@ -4,15 +4,14 @@ import paho.mqtt.client as paho
 
 broker="broker.emqx.io"
 
+port = "COM6" #COM{i} for windows
 
-port = "COM7" #COM{i} for windows
 connection = serial.Serial(port, timeout=1)
 
 def on_message(client, userdata, message):
     data = str(message.payload.decode("utf-8"))
     data = data.split()
-    print(data)
-    send_command(data[0], int(data[1]))
+    print(send_command(data[0], int(data[1])))
 
 def send_command(cmd: str, response_len: int) -> str:
     connection.write(cmd.encode())
